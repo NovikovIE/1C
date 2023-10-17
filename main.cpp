@@ -59,13 +59,63 @@ void print_infected_cities(vector<size_t>& cities, std::unordered_map<size_t, st
     cout << "\n";
 }
 
-int main() {
+void test1() {
+    auto counter = 3;
+    // triangle
+    vector<pair<size_t, size_t>> edges = {{0, 1}, {1, 2}, {0, 2}};
+
+    auto cities = std::move(get_infected_cities(edges, counter));
+
+    if (cities.size() == 2) {
+        cout << "TEST1 PASSED\n";
+    } else {
+        cout << "TEST1 FAILED\n";
+    }
+}
+
+void test2() {
+    auto counter = 5;
+    // circle
+    vector<pair<size_t, size_t>> edges = {{0, 1}, {1, 2}, {2, 3}, {3, 4}, {4, 0}};
+
+    auto cities = std::move(get_infected_cities(edges, counter));
+
+    if (cities.size() == 3) {
+        cout << "TEST2 PASSED\n";
+    } else {
+        cout << "TEST2 FAILED\n";
+    }
+}
+
+void test3() {
+    auto counter = 5;
+    // clique
+    vector<pair<size_t, size_t>> edges = {{0, 1}, {0, 2}, {0, 3}, {0, 4}, {1, 2},
+                                          {1, 3}, {1, 4}, {2, 3}, {2, 4}, {3, 4}};
+
+    auto cities = std::move(get_infected_cities(edges, counter));
+
+    if (cities.size() == 2) {
+        cout << "TEST3 PASSED\n";
+    } else {
+        cout << "TEST3 FAILED\n";
+    }
+}
+
+void in_out_solve() {
     std::unordered_map<string, size_t> string_int;
     std::unordered_map<size_t, string> int_string;
 
     auto [edges, counter] = std::move(get_input(string_int, int_string));
     auto cities = std::move(get_infected_cities(edges, counter));
     print_infected_cities(cities, int_string);
+}
+
+int main() {
+
+    test1();
+    test2();
+    test3();
 
     return 0;
 }
