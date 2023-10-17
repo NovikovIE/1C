@@ -3,4 +3,4 @@ project(1C)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(1C main.cpp)
+add_executable(1C main.cpp cities.cpp)
